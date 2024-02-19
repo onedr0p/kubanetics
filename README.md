@@ -17,16 +17,16 @@ env:
 ```yaml
 env:
   - name: SCRIPT_NAME
-    value: talos-suc.sh
+    value: talos-upgrade.sh
   - name: SETTLE_DOWN_SECONDS
     value: "10"
   - name: TALOS_HEALTHCHECK
     value: "true"
   - name: TALOS_TIMEOUT
     value: "600s"
-  - name: CEPH_HEALTHCHECK
+  - name: ROOK_CEPH_HEALTHCHECK
     value: "true"
-  - name: CEPH_TIMEOUT
+  - name: ROOK_CEPH_TIMEOUT
     value: "600s"
   - name: CNPG_MAINTENANCE
     value: "true"
