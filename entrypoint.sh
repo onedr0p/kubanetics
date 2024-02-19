@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 exec \
-    /usr/bin/bash \
+    /bin/bash \
         "/app/${SCRIPT_NAME}" \
         "$@"
