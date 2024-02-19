@@ -19,7 +19,7 @@ fi
 
 if [ "${CEPH_HEALTHCHECK:-false}" == "true" ]; then
     echo "Waiting for Ceph to be healthy..."
-    kubectl wait --timeout="${ROOK_TIMEOUT:-600s}" \
+    kubectl wait --timeout="${CEPH_TIMEOUT:-600s}" \
         --for=jsonpath=.status.ceph.health=HEALTH_OK cephcluster \
             --all --all-namespaces
     echo "...Ceph is now healthy"
