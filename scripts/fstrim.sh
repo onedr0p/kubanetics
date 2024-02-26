@@ -11,8 +11,8 @@ fi
 # Enter namespaces and run commands
 nsrun() {
     nsenter \
-        --mount="/proc/${KUBELET_PID}/ns/mnt" \
-        --net="/proc/${KUBELET_PID}/ns/net" \
+        --mount="/host/proc/${KUBELET_PID}/ns/mnt" \
+        --net="/host/proc/${KUBELET_PID}/ns/net" \
         -- bash -c "$1"
 }
 
