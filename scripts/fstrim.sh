@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 KUBELET_BIN="/usr/local/bin/kubelet"
-KUBELET_PID="$(pgrep -f $KUBELET_BIN | head -n 1)"
+KUBELET_PID="$(pgrep -f $KUBELET_BIN)"
 
 if [ -z "${KUBELET_PID}" ]; then
     echo "kubelet not found"
@@ -16,6 +16,5 @@ nsrun() {
         -- bash -c "$1"
 }
 
-
 # Trim filesystems
-nsrun "fstrim -v -a"
+nsrun "fstrim --verbose --quiet-unsupported --all"
