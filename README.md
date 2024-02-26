@@ -2,7 +2,23 @@
 
 A container with various scripts for Kubernetes
 
+![alt text](https://raw.githubusercontent.com/MacroPower/homelab/main/docs/img/peepoK8S.png)
+
 ## Usage
+
+### alertmanager-silencer
+
+```yaml
+env:
+  - name: SCRIPT_NAME
+    value: alertmanager-silencer.sh
+  - name: ALERTMANAGER_URL
+    value: http://alertmanager-operated.observability.svc.cluster.local:9093
+  - name: MATCHERS_0
+    value: alertname=CPUThrottlingHigh namespace=rook-ceph
+  - name: MATCHERS_1
+    value: alertname=CephNodeInconsistentMTU
+```
 
 ### fstrim
 
@@ -12,7 +28,7 @@ env:
     value: fstrim.sh
 ```
 
-### talos-suc
+### talos-upgrade
 
 ```yaml
 env:
