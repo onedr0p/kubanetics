@@ -1,15 +1,17 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: "Create Release"
+name: "Release"
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: ["main"]
+    paths:
+      - "!.github/**"
+      - "!README.md"
 
 jobs:
-  create-release:
+  release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
