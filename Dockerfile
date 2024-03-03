@@ -2,7 +2,7 @@ FROM docker.io/library/alpine:3.19.1
 ARG TARGETPLATFORM
 
 COPY --from=ghcr.io/siderolabs/talosctl:v1.6.5 /talosctl /usr/local/bin/talosctl
-COPY --from=quay.io/prometheus/alertmanager:v0.26.0 /bin/amtool /usr/local/bin/amtool
+COPY --from=quay.io/prometheus/alertmanager:v0.27.0 /bin/amtool /usr/local/bin/amtool
 COPY --from=registry.k8s.io/kubectl:v1.29.2 /bin/kubectl /usr/local/bin/kubectl
 
 ENV PATH="${PATH}:/root/.krew/bin"
