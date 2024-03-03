@@ -3,6 +3,8 @@ name: "Container"
 
 on:
   pull_request:
+  push:
+    branches: ["renovate/**"]
   release:
     types: ["published"]
 
@@ -59,6 +61,6 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.event_name != 'pull_request' && true || false }}
+          push: ${{ github.event_name == 'release' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
