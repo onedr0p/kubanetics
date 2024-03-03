@@ -8,5 +8,14 @@
     ":semanticCommits"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"]
+  "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
+  "packageRules": [
+    {
+      "description": ["Auto merge container images"],
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "automergeType": "branch",
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"]
+    }
+  ]
 }
