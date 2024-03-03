@@ -6,9 +6,6 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-    paths:
-      - "!.github/**"
-      - "!README.md"
 
 jobs:
   release:
