@@ -14,8 +14,7 @@
       "description": ["Auto merge container images"],
       "matchDatasources": ["docker"],
       "automerge": true,
-      "automergeType": "branch",
-      "matchUpdateTypes": ["major", "minor", "patch"]
+      "matchUpdateTypes": ["minor", "patch"]
     }
   ]
 }
