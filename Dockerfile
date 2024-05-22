@@ -2,7 +2,7 @@ FROM docker.io/library/alpine:3.20.0 as base
 ARG TARGETPLATFORM
 ENV PATH="${PATH}:/root/.krew/bin"
 
-RUN apk add --no-cache bash ca-certificates catatonit curl git jq util-linux go-yq
+RUN apk add --no-cache bash ca-certificates catatonit curl git jq util-linux yq-go
 
 COPY --from=ghcr.io/fluxcd/flux-cli:v2.3.0 /usr/local/bin/flux /usr/local/bin/flux
 COPY --from=ghcr.io/siderolabs/talosctl:v1.7.2 /talosctl /usr/local/bin/talosctl
