@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:3.19.1 as base
+FROM docker.io/library/alpine:3.20.0 as base
 ARG TARGETPLATFORM
 ENV PATH="${PATH}:/root/.krew/bin"
 
