@@ -13,7 +13,7 @@ nsrun() {
     nsenter \
         --mount="/host/proc/${KUBELET_PID}/ns/mnt" \
         --net="/host/proc/${KUBELET_PID}/ns/net" \
-        -- bash -c "$1"
+        -- sh -c "$1"
 }
 
 # Trim filesystems
