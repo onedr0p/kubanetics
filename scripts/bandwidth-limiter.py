@@ -112,8 +112,8 @@ def adjust_download_speeds() -> None:
         qbittorrent_queue, qbittorrent_current_limit = qbittorrent_data()
         sabnzbd_queue, sabnzbd_current_limit = sabnzbd_data()
 
-        logger.info(f"qbittorrent [{qbittorrent_queue} item(s) @ max {qbittorrent_current_limit} B/s]")
-        logger.info(f"sabnzbd [{sabnzbd_queue} item(s) @ max {sabnzbd_current_limit} MB/s]")
+        logger.debug(f"qbittorrent [{qbittorrent_queue} item(s) @ max {qbittorrent_current_limit} B/s]")
+        logger.debug(f"sabnzbd [{sabnzbd_queue} item(s) @ max {sabnzbd_current_limit} MB/s]")
 
         percentage = Config.LIMIT_PERCENTAGE() if qbittorrent_queue > 0 and sabnzbd_queue > 0 else Config.MAX_PERCENTAGE()
 
