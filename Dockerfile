@@ -1,6 +1,13 @@
-FROM docker.io/library/alpine:3.20.3 as base
+FROM docker.io/library/python:3.12.6-alpine
 ARG TARGETPLATFORM
-ENV PATH="${PATH}:/root/.krew/bin"
+ENV \
+    PATH="${PATH}:/root/.krew/bin" \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_ROOT_USER_ACTION=ignore \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_BREAK_SYSTEM_PACKAGES=1
 
 RUN apk add --no-cache bash ca-certificates catatonit curl git jq tzdata util-linux yq-go
 
@@ -13,6 +20,17 @@ RUN curl -fsSL "https://i.jpillora.com/kubernetes-sigs/krew!!?as=krew&type=scrip
 RUN krew install cnpg && kubectl cnpg version
 
 WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install uv \
+    && \
+    uv pip install --system --requirement requirements.txt \
+    && pip uninstall --yes uv \
+    && \
+    rm -rf \
+        /root/.cache \
+        /root/.cargo \
+        /tmp/*
 
 COPY ./scripts .
 COPY entrypoint.sh /entrypoint.sh
