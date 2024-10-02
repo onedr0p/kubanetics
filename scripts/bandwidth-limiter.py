@@ -62,6 +62,22 @@ class Config:
             raise ValueError("INTERVAL must be greater than 0.")
 
 
+class SessionManager:
+    session = None
+
+    @classmethod
+    def get_session(cls) -> requests.Session:
+        if cls.session is None:
+            cls.session = requests.Session()
+        return cls.session
+
+    @classmethod
+    def close_session(cls) -> None:
+        if cls.session:
+            cls.session.close()
+            cls.session = None
+
+
 def setup_logging() -> None:
     logging.basicConfig(
         level=Config.LOG_LEVEL(),
@@ -74,9 +90,11 @@ setup_logging()
 
 scheduler = sched.scheduler(time.time, time.sleep)
 
+
 def handle_request(url: str, method: str = 'GET', data: Optional[dict] = None) -> Optional[dict]:
     try:
-        response = requests.post(url, data=data) if method == 'POST' else requests.get(url)
+        session = SessionManager.get_session()
+        response = session.post(url, data=data) if method == 'POST' else session.get(url)
         response.raise_for_status()
         return response.json() if method == 'GET' else None
     except requests.RequestException as e:
@@ -154,8 +172,7 @@ def main():
         scheduler.enter(0, 1, adjust_download_speeds)
         scheduler.run()
     except (KeyboardInterrupt, SystemExit):
-        pass
-
+        SessionManager.close_session()
 
 if __name__ == '__main__':
     main()
