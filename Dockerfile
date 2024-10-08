@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.12.6-alpine
+FROM docker.io/library/python:3.13.0-alpine
 ARG TARGETPLATFORM
 ENV \
     PATH="${PATH}:/root/.krew/bin" \
