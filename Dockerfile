@@ -35,5 +35,4 @@ RUN pip install uv \
 COPY ./scripts .
 COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/usr/bin/catatonit", "--"]
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/catatonit", "--", "/entrypoint.sh"]
