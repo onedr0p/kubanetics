@@ -14,7 +14,7 @@ RUN apk add --no-cache bash ca-certificates catatonit curl git jq tzdata util-li
 COPY --from=ghcr.io/fluxcd/flux-cli:v2.4.0 /usr/local/bin/flux /usr/local/bin/flux
 COPY --from=ghcr.io/siderolabs/talosctl:v1.9.3 /talosctl /usr/local/bin/talosctl
 COPY --from=quay.io/prometheus/alertmanager:v0.28.0 /bin/amtool /usr/local/bin/amtool
-COPY --from=registry.k8s.io/kubectl:v1.32.1 /bin/kubectl /usr/local/bin/kubectl
+COPY --from=registry.k8s.io/kubectl:v1.32.2 /bin/kubectl /usr/local/bin/kubectl
 
 RUN curl -fsSL "https://i.jpillora.com/kubernetes-sigs/krew!!?as=krew&type=script" | bash
 RUN krew install cnpg && kubectl cnpg version
